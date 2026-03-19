@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ShopHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">🛍️ ShopHub</div>
+            <div class="nav">
+                <a href="index.html" class="back-link">← Back to Shop</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="cart-wrapper">
+            <!-- Cart Items Section -->
+            <section class="cart-section">
+                <h1>Shopping Cart 🛒</h1>
+                
+                <div id="cartContainer">
+                    <div id="emptyCart" class="empty-cart">
+                        <p>Your cart is empty</p>
+                        <a href="index.html" class="btn-primary">Continue Shopping</a>
+                    </div>
+
+                    <table id="cartTable" class="cart-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartItems"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="summary-section">
+                <div class="summary-box">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotalPrice">₹0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Delivery Charge:</span>
+                        <span id="deliveryCharge">₹0</span>
+                    </div>
+
+                    <div class="summary-row discount">
+                        <label for="couponCode">Apply Coupon:</label>
+                        <div class="coupon-input">
+                            <input type="text" id="couponCode" placeholder="E.g., SAVE10">
+                            <button id="applyCoupon" class="btn-coupon">Apply</button>
+                        </div>
+                    </div>
+
+                    <div id="discountRow" class="summary-row discount" style="display: none;">
+                        <span>Discount:</span>
+                        <span id="discountPrice" class="discount-value">-₹0</span>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span>Total Amount:</span>
+                        <span id="totalPrice">₹0</span>
+                    </div>
+
+                    <button id="checkoutBtn" class="btn-checkout">Proceed to Checkout</button>
+                    <button id="continueShopping" class="btn-secondary">Continue Shopping</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            
+            <h2>Checkout</h2>
+
+            <!-- Delivery Address -->
+            <div class="form-section">
+                <h3>📍 Delivery Address</h3>
+                <input type="text" id="fullName" class="form-input" placeholder="Full Name" required>
+                <input type="email" id="email" class="form-input" placeholder="Email Address" required>
+                <input type="text" id="phone" class="form-input" placeholder="Phone Number" required>
+                <input type="text" id="address" class="form-input" placeholder="Street Address" required>
+                <input type="text" id="city" class="form-input" placeholder="City" required>
+                <input type="text" id="zipcode" class="form-input" placeholder="Zip Code" required>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="form-section">
+                <h3>💳 Payment Method</h3>
+                <div class="payment-options">
+                    <label class="radio-label">
+                        <input type="radio" name="payment" value="card" checked>
+                        Credit/Debit Card
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="payment" value="upi">
+                        UPI/Google Pay
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="payment" value="cod">
+                        Cash on Delivery
+                    </label>
+                </div>
+            </div>
+
+            <!-- Final Total -->
+            <div class="form-section">
+                <div class="final-total">
+                    <span>Final Amount:</span>
+                    <span id="finalTotal">₹0</span>
+                </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <button id="placeOrderBtn" class="btn-checkout btn-full">Place Order</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content success-modal">
+            <div class="success-icon">✓</div>
+            <h2>Order Placed Successfully! 🎉</h2>
+            <p id="orderNumber"></p>
+            <p>Thank you for your purchase!</p>
+            <p class="small-text">Your order confirmation has been sent to your email.</p>
+            <button id="backToShop" class="btn-primary">Back to Shop</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 ShopHub. All rights reserved. Made with ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
