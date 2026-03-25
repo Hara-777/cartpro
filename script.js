@@ -642,8 +642,44 @@ window.addEventListener("click", (e) => {
     }
 });
 
+// ==================== Theme Initialization ====================
+function setupTheme() {
+    const themeToggleBtn = document.getElementById("themeToggle");
+    const currentTheme = localStorage.getItem("theme") || "light-mode";
+
+    // Apply the saved theme based on user preference
+    if (currentTheme === "dark-mode") {
+        document.body.setAttribute('data-theme', 'dark');
+        if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
+    } else {
+        document.body.removeAttribute('data-theme');
+        if (themeToggleBtn) themeToggleBtn.textContent = "🌙";
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+            const isDark = document.body.hasAttribute('data-theme');
+            
+            if (isDark) {
+                // Switch to light mode
+                document.body.removeAttribute('data-theme');
+                themeToggleBtn.textContent = "🌙";
+                localStorage.setItem("theme", "light-mode");
+            } else {
+                // Switch to dark mode
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggleBtn.textContent = "☀️";
+                localStorage.setItem("theme", "dark-mode");
+            }
+        });
+    }
+}
+
 // ==================== Initialize on Page Load ====================
 document.addEventListener("DOMContentLoaded", () => {
+    // Setup theme 
+    setupTheme();
+
     // Update cart count on every page
     cart.updateCartCount();
 
